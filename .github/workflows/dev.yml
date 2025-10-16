@@ -45,14 +45,16 @@ jobs:
           echo "KEY: ${{ env.SERVERLESS_ACCESS_KEY }}"
 
       - name: run integration test
-        run: echo ${{ env.SERVERLESS_ACCESS_KEY }}
-        run: npm run dotEnv && cross-env TEST_MODE=handler vitest
+        run: |
+          echo ${{ env.SERVERLESS_ACCESS_KEY }}
+          npm run dotEnv && cross-env TEST_MODE=handler vitest
         env:
           SERVERLESS_ACCESS_KEY: ${{ env.SERVERLESS_ACCESS_KEY }}
 
       - name: deploy to dev
-        run: echo ${{ env.SERVERLESS_ACCESS_KEY }}
-        run: npx sls deploy
+        run: |
+          echo ${{ env.SERVERLESS_ACCESS_KEY }}
+          npx sls deploy
         env:
           SERVERLESS_ACCESS_KEY: ${{ env.SERVERLESS_ACCESS_KEY }}
 
