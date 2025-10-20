@@ -37,6 +37,7 @@ export const handler = middy(async (event, context) => {
   cacheExpiry: 1 * 60 * 1000, // 1 mins
   setToContext: true,
   fetchData: {
-    config: `/${serviceName}/${ssmStage}/get-restaurants/config`
+    config: `/${serviceName}/${ssmStage}/search-restaurants/config`,
+    secretString: `/${serviceName}/${ssmStage}/search-restaurants/secretString`
   }
 }))
