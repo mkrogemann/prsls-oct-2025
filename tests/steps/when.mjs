@@ -1,10 +1,24 @@
 import { AwsClient } from 'aws4fetch'
 import { fromNodeProviderChain } from "@aws-sdk/credential-providers"
+import { EventBridgeClient, PutEventsCommand } from '@aws-sdk/client-eventbridge'
 
 const mode = process.env.TEST_MODE
 
 const APP_ROOT = '../../'
 import _ from 'lodash'
+
+const viaEventBridge = async (busName, source, detailType, detail) => {
+  const eventBridge = new EventBridgeClient()
+  const putEventsCmd = new PutEventsCommand({
+    Entries: [{
+      Source: source,
+      DetailType: detailType,
+      Detail: JSON.stringify(detail),
+      EventBusName: busName
+    }]
+  })
+  await eventBridge.send(putEventsCmd)
+}
 
 const viaHandler = async (event, functionName) => {
   const { handler } = await import(`${APP_ROOT}/functions/${functionName}.mjs`)
@@ -112,6 +126,7 @@ export const we_invoke_notify_restaurant = async (event) => {
   if (mode === 'handler') {
     await viaHandler(event, 'notify-restaurant')
   } else {
-    throw new Error('not supported')
+    const busName = process.env.bus_name
+    await viaEventBridge(busName, event.source, event['detail-type'], event.detail)
   }
 }

@@ -9,17 +9,17 @@ import { Chance } from 'chance'
 const chance = Chance()
 
 // needs number, special char, upper and lower case
-const random_password = () => `${chance.string({ length: 8})}B!gM0uth`
+const random_password = () => `${chance.string({ length: 8 })}B!gM0uth`
 
 export const an_authenticated_user = async () => {
   const cognito = new CognitoIdentityProviderClient()
 
   const userpoolId = process.env.cognito_user_pool_id
-  const clientId = process.env.cognito_server_client_id
+  const clientId = process.env.CognitoUserPoolServerClientId
 
   const firstName = chance.first({ nationality: "en" })
   const lastName = chance.last({ nationality: "en" })
-  const suffix = chance.string({length: 8, pool: "abcdefghijklmnopqrstuvwxyz"})
+  const suffix = chance.string({ length: 8, pool: "abcdefghijklmnopqrstuvwxyz" })
   const username = `test-${firstName}-${lastName}-${suffix}`
   const password = random_password()
   const email = `${firstName}-${lastName}@big-mouth.com`

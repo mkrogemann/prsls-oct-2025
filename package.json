@@ -16,13 +16,16 @@
     "@aws-sdk/client-dynamodb": "^3.716.0",
     "@aws-sdk/client-eventbridge": "^3.913.0",
     "@aws-sdk/client-sns": "^3.913.0",
+    "@aws-sdk/client-sqs": "^3.913.0",
     "@aws-sdk/client-ssm": "^3.913.0",
     "@aws-sdk/credential-providers": "^3.906.0",
     "@aws-sdk/lib-dynamodb": "^3.716.0",
     "cheerio": "^1.1.2",
     "cross-env": "^10.1.0",
     "dotenv": "^16.4.7",
+    "rxjs": "^7.8.2",
     "serverless-export-env": "^2.2.0",
+    "serverless-export-outputs": "^1.0.2",
     "vitest": "^3.2.4"
   },
   "dependencies": {
