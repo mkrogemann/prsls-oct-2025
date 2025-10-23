@@ -23,8 +23,10 @@ export const an_authenticated_user = async () => {
   const lastName = chance.last({ nationality: "en" })
   const suffix = chance.string({ length: 8, pool: "abcdefghijklmnopqrstuvwxyz" })
   const username = `test-${firstName}-${lastName}-${suffix}`
+  console.log("generated username: ", username)
   const password = random_password()
   const email = `${firstName}-${lastName}@big-mouth.com`
+  console.log("just before createReq, we still have a userpoolId: ", userpoolId)
 
   const createReq = new AdminCreateUserCommand({
     UserPoolId: userpoolId,
