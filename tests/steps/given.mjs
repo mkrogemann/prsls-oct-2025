@@ -16,7 +16,7 @@ export const an_authenticated_user = async () => {
 
   const userpoolId = process.env.cognito_user_pool_id
   console.log("userpoolId ", userpoolId)
-  const clientId = process.env.CognitoUserPoolServerClientId
+  const clientId = process.env.cognito_server_client_id
   console.log("clientId ", clientId)
 
   const firstName = chance.first({ nationality: "en" })
