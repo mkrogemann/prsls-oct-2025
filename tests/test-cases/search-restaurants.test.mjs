@@ -8,6 +8,7 @@ describe('Given an authenticated user', () => {
 
   beforeAll(async () => {
     user = await given.an_authenticated_user()
+    console.log("we have a user: ", user.firstName, " ", user.lastName, " ", user.idToken, " ", user.username)
   })
 
   afterAll(async () => {
